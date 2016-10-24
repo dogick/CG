@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <tchar.h>
 
+
+
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include <glm/vec2.hpp>
@@ -17,6 +19,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <SDL_events.h>
+#include <SDL_image.h>
 
 #include <string>
 #include <mutex>

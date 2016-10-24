@@ -5,12 +5,51 @@
 
 namespace
 {
+	/*void LoadTexture()
+	{
+		SDL_Surface* image = SDL_LoadBMP("ball.bmp");
+		if (image == NULL) {
+			printf("SDL_Error: %s\n", SDL_GetError());
+			return;
+		}
 
+		glEnable(GL_TEXTURE_2D);
+
+		GLuint texture;
+		glGenTextures(1, &texture);
+		glBindTexture(GL_TEXTURE_2D, texture);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, image->format->BytesPerPixel, image->w, image->h, 0, 0, GL_UNSIGNED_BYTE, image->pixels);
+
+
+
+
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glPushMatrix();
+		glColor3f(1.0f, 0.0f, 0.0f);
+		glTranslatef(100, 100, 0.0f);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glBegin(GL_QUADS);
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(0.0f, 0.0f, 0.0f);
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(128.0f, 0.0f, 0.0f);
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(128.0f, 128.0f, 0.0f);
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(0.0f, 128.0f, 0.0f);
+		glEnd();
+		glPopMatrix();
+
+	}*/
 }
 
 CWindow::CWindow()
 	:m_room(new CRoom(GRAVITY))
 {
+	
 }
 
 
@@ -31,11 +70,20 @@ void CWindow::OnUpdateWindow(float deltaSeconds)
 void CWindow::OnDrawWindow(const glm::ivec2 & size)
 {
 	SetupView(size);
+	//LoadTexture();
 	m_room->Render();
 }
 
 void CWindow::OnMouseDown(const SDL_Event &event)
 {
+	if (event.type == SDL_MOUSEBUTTONDOWN)
+	{
+		m_room->Fire(event);
+	}
+	else
+	{
+		m_room->RotateGun(event);
+	}
 
 }
 

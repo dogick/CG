@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Wall.h"
 
-CWall::CWall(b2World *world, glm::vec2 position, glm::vec2 size, float angle, b2BodyType bodyType)
+CWall::CWall(std::shared_ptr<b2World> world, glm::vec2 position, glm::vec2 size, float angle, b2BodyType bodyType)
 {
 	m_bodydef.angle = angle;
 	m_bodydef.position.Set(position.x, position.y);
@@ -9,10 +9,12 @@ CWall::CWall(b2World *world, glm::vec2 position, glm::vec2 size, float angle, b2
 	m_body = world->CreateBody(&m_bodydef);
 	m_shape.SetAsBox(size.x, size.y);
 	m_fixturedef.shape = &m_shape;
-	m_fixturedef.restitution = 0.7f;
+	m_fixturedef.density = 1;
+	m_fixturedef.restitution = 0.3f;
 	m_body->CreateFixture(&m_fixturedef);
 
 }
+
 
 void CWall::Draw()
 {
